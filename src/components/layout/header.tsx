@@ -6,6 +6,7 @@ import { TrainFront, LayoutDashboard, Ticket, Bot, Building2, AlertTriangle, Men
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { ThemeToggle } from './theme-toggle';
 
 type HeaderProps = {
   activeView: string;
@@ -50,30 +51,33 @@ export default function Header({ activeView, setActiveView }: HeaderProps) {
             </button>
           ))}
         </nav>
-        <div className="md:hidden">
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col space-y-4 mt-8">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavClick(item.id)}
-                    className={`flex items-center gap-3 p-2 rounded-md text-base font-medium transition-colors hover:bg-accent ${
-                      activeView === item.id ? 'text-primary bg-accent' : 'text-foreground'
-                    }`}
-                  >
-                    <item.icon className="h-5 w-5" />
-                    {item.label}
-                  </button>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
+        <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <div className="md:hidden">
+              <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Menu />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right">
+                  <nav className="flex flex-col space-y-4 mt-8">
+                    {navItems.map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={() => handleNavClick(item.id)}
+                        className={`flex items-center gap-3 p-2 rounded-md text-base font-medium transition-colors hover:bg-accent ${
+                          activeView === item.id ? 'text-primary bg-accent' : 'text-foreground'
+                        }`}
+                      >
+                        <item.icon className="h-5 w-5" />
+                        {item.label}
+                      </button>
+                    ))}
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
         </div>
       </div>
     </header>
