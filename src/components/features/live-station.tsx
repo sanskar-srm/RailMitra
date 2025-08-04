@@ -51,7 +51,7 @@ export default function LiveStation() {
                 id="station-name"
                 placeholder="e.g., NDLS for New Delhi"
                 value={station}
-                onChange={(e) => setStation(e.target.value)}
+                onChange={(e) => setStation(e.target.value.toUpperCase())}
               />
             </div>
             <Button type="submit" disabled={loading} className="w-full sm:w-auto">
@@ -77,26 +77,28 @@ export default function LiveStation() {
                 <TableRow>
                   <TableHead>Train</TableHead>
                   <TableHead className="text-center">Arrival</TableHead>
+                  <TableHead className="text-center">Departure</TableHead>
                   <TableHead className="text-center">Platform</TableHead>
                   <TableHead className="text-right">Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {arrivals.map((arrival) => (
-                  <TableRow key={arrival.TrainNo}>
-                    <TableCell className="font-medium">{arrival.TrainName} ({arrival.TrainNo})</TableCell>
-                    <TableCell className="text-center">{arrival.ActArrTime}</TableCell>
-                    <TableCell className="text-center">{arrival.Platform ?? 'N/A'}</TableCell>
+                  <TableRow key={arrival.train_no}>
+                    <TableCell className="font-medium">{arrival.train_name} ({arrival.train_no})</TableCell>
+                    <TableCell className="text-center">{arrival.exp_arrival}</TableCell>
+                    <TableCell className="text-center">{arrival.exp_departure}</TableCell>
+                    <TableCell className="text-center">{arrival.platform_no ?? 'N/A'}</TableCell>
                     <TableCell className="text-right">
                        <Badge 
                         variant={
-                          arrival.Status.includes('CANCELLED') ? 'destructive' :
-                          arrival.Status.includes('ON TIME') ? 'default' :
+                          arrival.delay.toLowerCase().includes('cancel') ? 'destructive' :
+                          arrival.delay.toLowerCase().includes('on time') ? 'default' :
                           'secondary'
                         }
                         className="capitalize"
                       >
-                        {arrival.Status}
+                        {arrival.delay}
                       </Badge>
                     </TableCell>
                   </TableRow>

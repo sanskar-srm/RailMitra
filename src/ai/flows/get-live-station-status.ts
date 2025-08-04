@@ -18,16 +18,13 @@ const GetLiveStationStatusInputSchema = z.object({
 export type GetLiveStationStatusInput = z.infer<typeof GetLiveStationStatusInputSchema>;
 
 const TrainDataSchema = z.object({
-  TrainNo: z.string(),
-  TrainName: z.string(),
-  SchArrTime: z.string(),
-  SchDepTime: z.string(),
-  ActArrTime: z.string(),
-  ActDepTime: z.string(),
-  DelayInArrival: z.string(),
-  DelayInDeparture: z.string(),
-  Platform: z.number().nullable(),
-  Status: z.string(),
+  train_no: z.string(),
+  train_name: z.string(),
+  exp_arrival: z.string(),
+  exp_departure: z.string(),
+  platform_no: z.string().nullable(),
+  status: z.string(),
+  delay: z.string(),
 });
 
 const GetLiveStationStatusOutputSchema = z.object({
@@ -47,14 +44,13 @@ const getLiveStationStatusFlow = ai.defineFlow(
   },
   async ({ stationCode, hours }) => {
     const apiKey = process.env.RAPIDAPI_KEY;
-    const apiHost = process.env.RAPIDAPI_HOST || 'irctc1.p.rapidapi.com';
+    const apiHost = process.env.RAPIDAPI_HOST || 'train-running-status-indian-railways.p.rapidapi.com';
 
     if (!apiKey) {
       throw new Error('RAPIDAPI_KEY environment variable is not set.');
     }
     
-    // As per the API documentation, `fromStationCode` is used.
-    const url = `https://${apiHost}/api/v3/getLiveStation?fromStationCode=${stationCode}&hours=${hours}`;
+    const url = `https://${apiHost}/api/v1/getStationDetailsByCode?station_code=${stationCode}`;
     
     try {
       const response = await fetch(url, {
@@ -73,12 +69,22 @@ const getLiveStationStatusFlow = ai.defineFlow(
       
       const result = await response.json();
       
-      if (!result.data || !Array.isArray(result.data.trains)) {
+      if (!result.data || !Array.isArray(result.data.trains_at_station)) {
         console.error("Unexpected API response format:", result);
         return { trains: [] };
       }
+
+      const transformedTrains = result.data.trains_at_station.map((train: any) => ({
+        train_no: train.train_no,
+        train_name: train.train_name,
+        exp_arrival: train.exp_arrival,
+        exp_departure: train.exp_departure,
+        platform_no: train.platform_no,
+        status: train.isRunning ? 'Running' : 'Not Running',
+        delay: train.delay,
+      }));
       
-      return { trains: result.data.trains };
+      return { trains: transformedTrains };
 
     } catch (error) {
       console.error('Error fetching live station data:', error);
