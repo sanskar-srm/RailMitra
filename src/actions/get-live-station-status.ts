@@ -2,7 +2,7 @@
 
 export async function getLiveStationStatus({ stationCode }: { stationCode: string }) {
   const apiKey = process.env.RAPIDAPI_KEY;
-  const apiHost = process.env.RAPIDAPI_HOST || 'train-running-status-indian-railways.p.rapidapi.com';
+  const apiHost = 'train-running-status-indian-railways.p.rapidapi.com';
 
   if (!apiKey) {
     return { error: 'RAPIDAPI_KEY environment variable is not set.' };
