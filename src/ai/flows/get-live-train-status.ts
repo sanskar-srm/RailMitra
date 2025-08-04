@@ -41,7 +41,7 @@ const getLiveTrainStatusFlow = ai.defineFlow(
       throw new Error('RAPIDAPI_KEY environment variable is not set.');
     }
     
-    const url = `https://${apiHost}/api/v3/getlivetrainstatus?trainno=${trainNumber}`;
+    const url = `https://${apiHost}/trainman/${trainNumber}`;
     
     try {
       const response = await fetch(url, {
