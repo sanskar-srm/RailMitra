@@ -2,10 +2,13 @@
 
 export async function getLiveTrainStatus({ trainNumber }: { trainNumber: string }) {
   const apiKey = process.env.RAPIDAPI_KEY;
-  const apiHost = 'train-running-status-indian-railways.p.rapidapi.com';
+  const apiHost = process.env.RAPIDAPI_HOST;
 
   if (!apiKey) {
     return { error: 'RAPIDAPI_KEY environment variable is not set.' };
+  }
+  if (!apiHost) {
+    return { error: 'RAPIDAPI_HOST environment variable is not set.' };
   }
   
   const url = `https://${apiHost}/trainman/${trainNumber}`;
