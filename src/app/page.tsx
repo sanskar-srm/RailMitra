@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import LiveTrainStatus from '@/components/features/live-train-status';
 import PnrStatus from '@/components/features/pnr-status';
-import AiRouteSuggestion from '@/components/features/ai-route-suggestion';
 import LiveStation from '@/components/features/live-station';
 import TrainAlerts from '@/components/features/train-alerts';
 import Dashboard from '@/components/features/dashboard';
@@ -20,8 +19,6 @@ export default function Home() {
         return <LiveTrainStatus />;
       case 'pnr-status':
         return <PnrStatus />;
-      case 'ai-suggester':
-        return <AiRouteSuggestion />;
       case 'live-station':
         return <LiveStation />;
       case 'alerts':

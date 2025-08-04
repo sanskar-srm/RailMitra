@@ -7,13 +7,13 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Search } from 'lucide-react';
-import { getLiveStationStatus, type GetLiveStationStatusOutput } from '@/ai/flows/get-live-station-status';
+import { getLiveStationStatus } from '@/actions/get-live-station-status';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export default function LiveStation() {
   const [station, setStation] = useState('');
   const [stationName, setStationName] = useState('');
-  const [arrivals, setArrivals] = useState<GetLiveStationStatusOutput['trains']>([]);
+  const [arrivals, setArrivals] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,11 +26,14 @@ export default function LiveStation() {
     
     try {
       const result = await getLiveStationStatus({ stationCode: station });
-      setArrivals(result.trains);
+      if (result.error) {
+        throw new Error(result.error);
+      }
+      setArrivals(result.trains || []);
       setStationName(station.toUpperCase());
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      setError("Failed to fetch station data. Please check the station code and your API key.");
+      setError(err.message || "Failed to fetch station data. Please check the station code and your API key.");
     } finally {
       setLoading(false);
     }
@@ -92,8 +95,8 @@ export default function LiveStation() {
                     <TableCell className="text-right">
                        <Badge 
                         variant={
-                          arrival.delay.toLowerCase().includes('cancel') ? 'destructive' :
-                          arrival.delay.toLowerCase().includes('on time') ? 'default' :
+                          arrival.delay && arrival.delay.toLowerCase().includes('cancel') ? 'destructive' :
+                          arrival.delay && arrival.delay.toLowerCase().includes('on time') ? 'default' :
                           'secondary'
                         }
                         className="capitalize"

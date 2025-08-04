@@ -2,7 +2,7 @@
 "use client";
 
 import Link from 'next/link';
-import { TrainFront, LayoutDashboard, Ticket, Bot, Building2, AlertTriangle, Menu } from 'lucide-react';
+import { TrainFront, LayoutDashboard, Ticket, Building2, AlertTriangle, Menu } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -19,7 +19,6 @@ const navItems = [
   { id: 'pnr-status', label: 'PNR Status', icon: Ticket },
   { id: 'live-station', label: 'Live Station', icon: Building2 },
   { id: 'alerts', label: 'Train Alerts', icon: AlertTriangle },
-  { id: 'ai-suggester', label: 'AI Route Suggestion', icon: Bot },
 ];
 
 export default function Header({ activeView, setActiveView }: HeaderProps) {

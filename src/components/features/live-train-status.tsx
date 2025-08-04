@@ -8,7 +8,7 @@ import { Search, TrainFront, Clock, MapPin, Gauge, Route, Loader2 } from 'lucide
 import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { getLiveTrainStatus } from '@/ai/flows/get-live-train-status';
+import { getLiveTrainStatus } from '@/actions/get-live-train-status';
 
 export default function LiveTrainStatus() {
   const [trainNumber, setTrainNumber] = useState('');
@@ -25,10 +25,13 @@ export default function LiveTrainStatus() {
     
     try {
       const result = await getLiveTrainStatus({ trainNumber: trainNumber });
+      if(result.error) {
+        throw new Error(result.error);
+      }
       setTrainData(result.data);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      setError("Failed to fetch train data. Please check the train number and your API key.");
+      setError(err.message || "Failed to fetch train data. Please check the train number and your API key.");
     } finally {
       setLoading(false);
     }

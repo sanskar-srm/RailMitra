@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Ticket, TrainFront, Building2, Bot, AlertTriangle, LayoutDashboard } from "lucide-react";
+import { ArrowRight, Ticket, TrainFront, Building2, AlertTriangle } from "lucide-react";
 
 type DashboardProps = {
   setActiveView: (view: string) => void;
@@ -14,7 +14,6 @@ export default function Dashboard({ setActiveView }: DashboardProps) {
     { title: "PNR Status", icon: Ticket, view: "pnr-status", description: "Check your ticket confirmation and seat status." },
     { title: "Live Station", icon: Building2, view: "live-station", description: "See all trains arriving or departing from a station." },
     { title: "Train Alerts", icon: AlertTriangle, view: "alerts", description: "Info on cancelled, diverted, or rescheduled trains." },
-    { title: "AI Route Suggestion", icon: Bot, view: "ai-suggester", description: "Get alternate routes for delayed or cancelled trains." },
   ];
 
   return (
