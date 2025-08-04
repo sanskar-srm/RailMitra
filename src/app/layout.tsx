@@ -4,8 +4,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/layout/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'Railocate',
-  description: 'A modern, smooth, and highly functional web platform to track trains across Indian Railways in real time.',
+  title: 'RailTracker',
+  description: 'Real-time train tracking, PNR status, live station updates, and more. The most comprehensive railway tracking platform for India.',
 };
 
 export default function RootLayout({
@@ -20,11 +20,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased bg-gradient-to-br from-[#0f172a] to-[#134e4a] text-gray-100">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

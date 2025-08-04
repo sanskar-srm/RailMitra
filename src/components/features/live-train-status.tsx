@@ -45,98 +45,70 @@ export default function LiveTrainStatus() {
   }
 
   return (
-    <div className="space-y-8 animate-in fade-in-50">
-      <Card>
-        <CardHeader>
-          <CardTitle>Live Train Status</CardTitle>
-          <CardDescription>Enter train number or name to get its live running status.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-grow">
-              <Label htmlFor="train-number" className="sr-only">Train Number or Name</Label>
-              <Input
+    <div className="space-y-6">
+        <form onSubmit={handleSearch} className="flex items-center gap-2 bg-white/10 p-2 rounded-lg">
+            <Input
                 id="train-number"
-                placeholder="e.g., 12951"
+                placeholder="Enter train number or name"
                 value={trainNumber}
                 onChange={(e) => setTrainNumber(e.target.value)}
-              />
-            </div>
-            <Button type="submit" disabled={loading} className="w-full sm:w-auto">
-              {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Search className="mr-2 h-4 w-4" />}
-              {loading ? 'Searching...' : 'Search'}
+                className="bg-transparent border-none text-white placeholder:text-gray-400 focus-visible:ring-0 focus-visible:ring-offset-0"
+            />
+            <Button type="submit" disabled={loading} className="bg-white text-black hover:bg-gray-200">
+              {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Search />}
+              {loading ? '' : 'Search'}
             </Button>
-          </form>
-        </CardContent>
-      </Card>
-
+        </form>
+      
       {error && <Alert variant="destructive"><AlertTitle>Error</AlertTitle><AlertDescription>{error}</AlertDescription></Alert>}
-
+      
       {loading && <div className="text-center p-8"><Loader2 className="h-8 w-8 animate-spin mx-auto" /><p className="mt-2">Loading train data...</p></div>}
 
       {trainData && (
-        <Card className="animate-in fade-in-50">
+        <Card className="animate-in fade-in-50 bg-white/5 border-white/10 text-white">
           <CardHeader>
             <CardTitle className="flex items-center gap-2"><TrainFront /> {trainData.train_name} ({trainData.train_number})</CardTitle>
-            <CardDescription>Last updated: {trainData.data_from}</CardDescription>
+            <CardDescription className="text-gray-400">Last updated: {trainData.data_from}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                <Alert><MapPin className="h-4 w-4" /><AlertTitle>Current Station</AlertTitle><AlertDescription>{trainData.current_station_name}</AlertDescription></Alert>
-                <Alert><Route className="h-4 w-4" /><AlertTitle>Next Station</AlertTitle><AlertDescription>{trainData.upcoming_stations?.[0]?.station_name || 'Destination'}</AlertDescription></Alert>
-                <Alert variant={trainData.delay_minutes > 0 ? "destructive" : "default"}><Clock className="h-4 w-4" /><AlertTitle>Delay</AlertTitle><AlertDescription>{trainData.delay_minutes || 0} mins</AlertDescription></Alert>
-                <Alert><Gauge className="h-4 w-4" /><AlertTitle>Status</AlertTitle><AlertDescription>{trainData.running_status}</AlertDescription></Alert>
+             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Current Station</p><p className="font-semibold">{trainData.current_station_name}</p></div>
+                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Next Station</p><p className="font-semibold">{trainData.upcoming_stations?.[0]?.station_name || 'Destination'}</p></div>
+                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Delay</p><p className="font-semibold">{trainData.delay_minutes || 0} mins</p></div>
+                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Status</p><p className="font-semibold">{trainData.running_status}</p></div>
             </div>
 
             <div>
-              <Label>Journey Progress</Label>
-              <Progress value={getProgress()} className="mt-2 h-3" />
-              <div className="flex justify-between text-xs text-muted-foreground mt-1">
+              <Label className="text-gray-400">Journey Progress</Label>
+              <Progress value={getProgress()} className="mt-2 h-2 bg-white/10 [&>div]:bg-green-500" />
+              <div className="flex justify-between text-xs text-gray-400 mt-1">
                 <span>{trainData.source_station_name}</span>
                 <span>{getProgress().toFixed(0)}% complete</span>
                 <span>{trainData.destination_station_name}</span>
               </div>
             </div>
 
-            <Separator />
+          </CardContent>
+        </Card>
+      )}
 
-            <div>
-              <h3 className="font-semibold mb-4 text-lg">Route Timeline</h3>
-              <div className="relative pl-6 max-h-96 overflow-y-auto">
-                {trainData.previous_stations.map((stop: any, index: number) => (
-                  <div key={index} className="relative flex items-start pb-8 last:pb-0 text-muted-foreground">
-                    <div className="absolute left-[-0.375rem] top-[0.125rem] h-full w-px bg-border"></div>
-                     <div className="absolute left-[-0.75rem] top-0 h-6 w-6 rounded-full flex items-center justify-center bg-muted border-2">
-                        <div className="h-2 w-2 rounded-full bg-primary/50"></div>
-                    </div>
-                    <div className="ml-6">
-                      <p className="text-sm">{stop.station_name}</p>
-                      <p className="text-xs">Arrival: {stop.actual_arrival_time}</p>
-                    </div>
-                  </div>
-                ))}
-                 <div className="relative flex items-start pb-8 last:pb-0 font-bold text-primary">
-                    <div className="absolute left-[-0.375rem] top-[0.125rem] h-full w-px bg-border"></div>
-                    <div className="absolute left-[-0.75rem] top-0 h-6 w-6 rounded-full flex items-center justify-center bg-primary ring-4 ring-primary/20">
-                      <div className="h-2 w-2 rounded-full bg-primary-foreground"></div>
-                    </div>
-                    <div className="ml-6">
-                      <p className="text-sm">{trainData.current_station_name}</p>
-                      <p className="text-xs text-muted-foreground">Arrival: {trainData.current_eta}</p>
-                    </div>
-                  </div>
-                {trainData.upcoming_stations.map((stop: any, index: number) => (
-                  <div key={index} className="relative flex items-start pb-8 last:pb-0">
-                    <div className="absolute left-[-0.375rem] top-[0.125rem] h-full w-px bg-border"></div>
-                    <div className="absolute left-[-0.75rem] top-0 h-6 w-6 rounded-full flex items-center justify-center bg-muted border-2"></div>
-                    <div className="ml-6">
-                      <p className="text-sm">{stop.station_name}</p>
-                      <p className="text-xs text-muted-foreground">Arrival: {stop.expected_arrival_time}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+       {!loading && !error && !trainData && (
+        <Card className="bg-white/5 border-white/10 text-white">
+          <CardContent className="p-6">
+             <div className="flex justify-between items-center">
+                <div>
+                    <h3 className="font-semibold">12001 Shatabdi Express</h3>
+                    <p className="text-sm text-gray-400">New Delhi → Mumbai</p>
+                </div>
+                <div className="text-right">
+                    <p className="text-sm font-semibold text-green-400">RUNNING</p>
+                    <p className="text-xs text-gray-400">On Time</p>
+                </div>
+             </div>
+             <Progress value={75} className="mt-4 h-2 bg-white/10 [&>div]:bg-green-500" />
+             <div className="flex justify-end text-xs text-gray-400 mt-1">
+                <span>Platform 16</span>
+             </div>
           </CardContent>
         </Card>
       )}
