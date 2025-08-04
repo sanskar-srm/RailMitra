@@ -1,4 +1,5 @@
 import { Clock, Zap, ShieldCheck, Star, CheckCircle } from "lucide-react";
+import Link from 'next/link';
 import Header from '@/components/layout/header';
 import SearchTabs from '@/components/features/search-tabs';
 
@@ -7,21 +8,25 @@ const coreFeatures = [
     icon: <Clock className="h-6 w-6 text-yellow-400" />,
     title: "Real-time Tracking",
     description: "Live train positions and delays",
+    href: "/dashboard"
   },
   {
     icon: <ShieldCheck className="h-6 w-6 text-yellow-400" />,
     title: "Reliable Data",
     description: "Official Indian Railways data",
+    href: "/dashboard"
   },
   {
     icon: <Zap className="h-6 w-6 text-yellow-400" />,
     title: "Lightning Fast",
     description: "Instant search results",
+    href: "/dashboard"
   },
   {
     icon: <Star className="h-6 w-6 text-yellow-400" />,
     title: "Premium Experience",
     description: "Beautiful, intuitive interface",
+    href: "/dashboard"
   },
 ];
 
@@ -65,11 +70,11 @@ export default function Home() {
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 {coreFeatures.map((feature) => (
-                  <div key={feature.title} className="bg-white/5 backdrop-blur-sm p-5 rounded-xl border border-white/10 space-y-2">
+                  <Link href={feature.href} key={feature.title} className="bg-white/5 backdrop-blur-sm p-5 rounded-xl border border-white/10 space-y-2 block hover:bg-white/10 transition-colors">
                     {feature.icon}
                     <h3 className="font-semibold">{feature.title}</h3>
                     <p className="text-sm text-gray-400">{feature.description}</p>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
