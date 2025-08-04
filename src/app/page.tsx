@@ -1,8 +1,8 @@
-import { Clock, Zap, ShieldCheck, Star } from "lucide-react";
+import { Clock, Zap, ShieldCheck, Star, CheckCircle } from "lucide-react";
 import Header from '@/components/layout/header';
 import SearchTabs from '@/components/features/search-tabs';
 
-const features = [
+const coreFeatures = [
   {
     icon: <Clock className="h-6 w-6 text-yellow-400" />,
     title: "Real-time Tracking",
@@ -23,6 +23,19 @@ const features = [
     title: "Premium Experience",
     description: "Beautiful, intuitive interface",
   },
+];
+
+const allFeatures = [
+  "Live Train Status",
+  "PNR Status Check",
+  "Live Station Arrivals",
+  "Seat Availability Checker",
+  "Fare Comparison between Trains",
+  "Train Number & Name Lookup",
+  "Full Train Schedule",
+  "Cancelled / Diverted / Rescheduled Train Info",
+  "Live Train on Map (real-time GPS)",
+  "Coach Layout and Position",
 ];
 
 const stats = [
@@ -51,7 +64,7 @@ export default function Home() {
             </div>
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
-                {features.map((feature) => (
+                {coreFeatures.map((feature) => (
                   <div key={feature.title} className="bg-white/5 backdrop-blur-sm p-5 rounded-xl border border-white/10 space-y-2">
                     {feature.icon}
                     <h3 className="font-semibold">{feature.title}</h3>
@@ -74,8 +87,26 @@ export default function Home() {
               </div>
             ))}
           </div>
-
         </div>
+
+        <section id="features" className="py-16 md:py-24 bg-white/5">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center space-y-4">
+              <h2 className="text-4xl font-bold tracking-tighter">All-in-One Train Companion</h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                From real-time tracking to seat availability, we've got everything you need for a smooth journey.
+              </p>
+            </div>
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {allFeatures.map((feature) => (
+                <div key={feature} className="flex items-center gap-4 bg-white/5 p-4 rounded-lg border border-white/10">
+                  <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
+                  <span className="font-medium">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   );
