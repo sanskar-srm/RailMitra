@@ -11,7 +11,7 @@ export async function getPnrStatus({ pnrNumber }: { pnrNumber: string }) {
     return { error: 'RAPIDAPI_HOST environment variable is not set.' };
   }
   
-  const url = `https://${apiHost}/api/v1/getPNRStatus?pnrNumber=${pnrNumber}`;
+  const url = `https://${apiHost}/api/v1/pnr/status?pnr=${pnrNumber}`;
   
   try {
     const response = await fetch(url, {
