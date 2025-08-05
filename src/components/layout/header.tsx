@@ -16,7 +16,7 @@ export default function Header() {
         <nav className="hidden md:flex items-center space-x-8">
             <Link href="/#features" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Features</Link>
             <Link href="/dashboard" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Dashboard</Link>
-            <Link href="#" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">About</Link>
+            <Link href="/about" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">About</Link>
         </nav>
         <div className="flex items-center gap-4">
             <ThemeToggle />
