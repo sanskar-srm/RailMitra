@@ -66,14 +66,14 @@ export default function PnrStatus() {
           <CardHeader>
             <CardTitle>Booking Details for PNR: {pnrData.pnr_number}</CardTitle>
             <CardDescription className="flex items-center gap-2 pt-2 text-gray-400">
-              <TrainFront className="h-4 w-4"/> {pnrData.train_name} ({pnrData.train_number}) | Date of Journey: {pnrData.journey_date}
+              <TrainFront className="h-4 w-4"/> {pnrData.train_name} ({pnrData.train_no}) | Date of Journey: {pnrData.doj}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-3 gap-4 mb-6 text-sm">
-                <div><span className="text-gray-400">From:</span><p className="font-semibold">{pnrData.from_station.name} ({pnrData.from_station.code})</p></div>
-                <div><span className="text-gray-400">To:</span><p className="font-semibold">{pnrData.to_station.name} ({pnrData.to_station.code})</p></div>
-                <div><span className="text-gray-400">Class:</span><p className="font-semibold">{pnrData.class}</p></div>
+                <div><span className="text-gray-400">From:</span><p className="font-semibold">{pnrData.from_station_name} ({pnrData.from_station_code})</p></div>
+                <div><span className="text-gray-400">To:</span><p className="font-semibold">{pnrData.to_station_name} ({pnrData.to_station_code})</p></div>
+                <div><span className="text-gray-400">Class:</span><p className="font-semibold">{pnrData.journey_class}</p></div>
             </div>
             
             <Separator className="bg-white/10" />
@@ -81,12 +81,12 @@ export default function PnrStatus() {
             <div className="mt-6">
                 <h3 className="font-semibold flex items-center gap-2 mb-4 text-lg"><Users /> Passenger Status</h3>
                 <div className="space-y-3">
-                    {pnrData.passenger_info.map((p: any, i: number) => (
+                    {pnrData.passenger_status.map((p: any, i: number) => (
                         <div key={i} className="flex flex-wrap justify-between items-center bg-white/5 p-3 rounded-lg">
-                            <p className="font-medium">Passenger {p.passenger_number}</p>
-                            <p className={`font-bold ${p.current_status.toLowerCase() === 'cnf' ? 'text-green-400' : 'text-orange-400'}`}>{p.current_status}</p>
+                            <p className="font-medium">Passenger {p.number}</p>
+                            <p className={`font-bold ${p.current_status_code.toLowerCase() === 'cnf' ? 'text-green-400' : 'text-orange-400'}`}>{p.current_status}</p>
                             <p className="text-gray-400">
-                              {p.current_status.toLowerCase() === 'cnf' ? `Coach: ${p.coach}, Berth: ${p.berth}` : `Booking Status: ${p.booking_status}`}
+                              {p.current_status_code.toLowerCase() === 'cnf' ? `Coach: ${p.current_coach}, Berth: ${p.current_berth_no}` : `Booking Status: ${p.booking_status}`}
                             </p>
                         </div>
                     ))}
