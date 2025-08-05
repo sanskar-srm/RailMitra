@@ -6,25 +6,25 @@ import SearchTabs from '@/components/features/search-tabs';
 
 const coreFeatures = [
   {
-    icon: <Clock className="h-6 w-6 text-yellow-400" />,
+    icon: <Clock className="h-6 w-6 text-primary" />,
     title: "Real-time Tracking",
     description: "Live train positions and delays",
     href: "/dashboard"
   },
   {
-    icon: <ShieldCheck className="h-6 w-6 text-yellow-400" />,
+    icon: <ShieldCheck className="h-6 w-6 text-primary" />,
     title: "Reliable Data",
     description: "Official Indian Railways data",
     href: "/dashboard"
   },
   {
-    icon: <Zap className="h-6 w-6 text-yellow-400" />,
+    icon: <Zap className="h-6 w-6 text-primary" />,
     title: "Lightning Fast",
     description: "Instant search results",
     href: "/dashboard"
   },
   {
-    icon: <Star className="h-6 w-6 text-yellow-400" />,
+    icon: <Star className="h-6 w-6 text-primary" />,
     title: "Premium Experience",
     description: "Beautiful, intuitive interface",
     href: "/dashboard"
@@ -62,7 +62,7 @@ export default function Home() {
                 Live Train Tracking Platform
               </div>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
-                Track Your <span className="text-yellow-400">Journey</span> Live
+                Track Your <span className="text-primary">Journey</span> Live
               </h1>
               <p className="text-lg text-gray-300 max-w-lg">
                 Real-time train tracking, PNR status, live station updates, and more. The most comprehensive railway tracking platform for India.
