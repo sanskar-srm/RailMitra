@@ -38,8 +38,7 @@ export default function LiveTrainStatus() {
   };
 
   const getProgress = () => {
-    if (!trainData?.upcoming_stations || trainData.upcoming_stations.length === 0) return 100;
-    if (!trainData?.previous_stations) return 0;
+    if (!trainData?.upcoming_stations || !trainData?.previous_stations) return 0;
     const totalStations = trainData.previous_stations.length + trainData.upcoming_stations.length;
     if (totalStations === 0) return 0;
     const stationsPassed = trainData.previous_stations.length;
@@ -70,7 +69,7 @@ export default function LiveTrainStatus() {
         <Card className="animate-in fade-in-50 bg-white/5 border-white/10 text-white">
           <CardHeader>
             <CardTitle className="flex items-center gap-2"><TrainFront /> {trainData.train_name} ({trainData.train_number})</CardTitle>
-            <CardDescription className="text-gray-400">Last updated: {trainData.data_from}</CardDescription>
+            <CardDescription className="text-gray-400">Last updated: {trainData.updated_time}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">

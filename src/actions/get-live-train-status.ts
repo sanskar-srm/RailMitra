@@ -11,7 +11,8 @@ export async function getLiveTrainStatus({ trainNumber }: { trainNumber: string 
     return { error: 'RAPIDAPI_HOST environment variable is not set.' };
   }
   
-  const url = `https://${apiHost}/trainman/${trainNumber}`;
+  // Using startDay=1 as a default, can be parameterized later if needed.
+  const url = `https://${apiHost}/api/v1/liveTrainStatus?trainNo=${trainNumber}&startDay=1`;
   
   try {
     const response = await fetch(url, {
@@ -30,9 +31,9 @@ export async function getLiveTrainStatus({ trainNumber }: { trainNumber: string 
     
     const result = await response.json();
     
-    if (!result.data) {
+    if (!result.status || !result.data) {
       console.error("Unexpected API response format:", result);
-      return { error: "Unexpected API response format" };
+      return { error: result.message || "Unexpected API response format" };
     }
     
     return { data: result.data };
