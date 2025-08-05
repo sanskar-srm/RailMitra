@@ -35,7 +35,7 @@ export async function getLiveTrainStatus({ trainNumber }: { trainNumber: string 
       return { error: "Unexpected API response format" };
     }
     
-    return result;
+    return { data: result.data };
 
   } catch (error: any) {
     console.error('Error fetching live train status:', error);

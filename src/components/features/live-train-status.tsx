@@ -38,8 +38,10 @@ export default function LiveTrainStatus() {
   };
 
   const getProgress = () => {
-    if (!trainData?.upcoming_stations || trainData.upcoming_stations.length === 0) return 0;
+    if (!trainData?.upcoming_stations || trainData.upcoming_stations.length === 0) return 100;
+    if (!trainData?.previous_stations) return 0;
     const totalStations = trainData.previous_stations.length + trainData.upcoming_stations.length;
+    if (totalStations === 0) return 0;
     const stationsPassed = trainData.previous_stations.length;
     return (stationsPassed / totalStations) * 100;
   }
@@ -74,7 +76,7 @@ export default function LiveTrainStatus() {
              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                 <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Current Station</p><p className="font-semibold">{trainData.current_station_name}</p></div>
                 <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Next Station</p><p className="font-semibold">{trainData.upcoming_stations?.[0]?.station_name || 'Destination'}</p></div>
-                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Delay</p><p className="font-semibold">{trainData.delay_minutes || 0} mins</p></div>
+                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Delay</p><p className="font-semibold">{trainData.delay || 'On time'}</p></div>
                 <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Status</p><p className="font-semibold">{trainData.running_status}</p></div>
             </div>
 

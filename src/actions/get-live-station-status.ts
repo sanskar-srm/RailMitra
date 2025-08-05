@@ -41,7 +41,6 @@ export async function getLiveStationStatus({ stationCode }: { stationCode: strin
       exp_arrival: train.exp_arrival,
       exp_departure: train.exp_departure,
       platform_no: train.platform_no,
-      status: train.isRunning ? 'Running' : 'Not Running',
       delay: train.delay,
     }));
     
