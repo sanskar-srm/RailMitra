@@ -88,7 +88,11 @@ export default function LiveStation() {
                           arrival.delay && (arrival.delay.toLowerCase().includes('on time') || arrival.delay.toLowerCase().includes('right time')) ? 'default' :
                           'secondary'
                         }
-                        className="capitalize bg-green-500/10 text-green-400 border-green-500/20"
+                        className={
+                          arrival.delay && (arrival.delay.toLowerCase().includes('on time') || arrival.delay.toLowerCase().includes('right time'))
+                          ? "bg-green-500/10 text-green-400 border-green-500/20"
+                          : "bg-orange-500/10 text-orange-400 border-orange-500/20"
+                        }
                       >
                         {arrival.delay}
                       </Badge>
