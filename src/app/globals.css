@@ -58,6 +58,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
 }
 
@@ -103,4 +104,106 @@
     border-radius: inherit; /* should match the container's border-radius */
     width: 100%;
   }
+
+  .background-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .line {
+    position: absolute;
+    display: block;
+    width: 100px;
+    height: 100px;
+    border: 1px solid hsl(var(--primary) / 0.2);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    animation-iteration-count: infinite;
+  }
+
+  .line:nth-child(1) {
+    border-radius: 0 0 1rem 0;
+    border-width: 0 1px 1px 0;
+    animation-name: animate-line-1;
+    animation-duration: 20s;
+  }
+
+  .line:nth-child(2) {
+    animation-name: animate-line-2;
+    animation-duration: 25s;
+    border-radius: 1rem 0 0 0;
+    border-width: 1px 0 0 1px;
+    animation-delay: 2s;
+  }
+
+  .line:nth-child(3) {
+    animation-name: animate-line-3;
+    animation-duration: 18s;
+    border-radius: 0 1rem 0 0;
+    border-width: 1px 1px 0 0;
+    animation-delay: 5s;
+  }
+
+  .line:nth-child(4) {
+    animation-name: animate-line-4;
+    animation-duration: 30s;
+    border-radius: 0 0 0 1rem;
+    border-width: 0 0 1px 1px;
+    animation-delay: 8s;
+  }
+   .line:nth-child(5) {
+    border-radius: 0 0 1rem 0;
+    border-width: 0 1px 1px 0;
+    animation-name: animate-line-1;
+    animation-duration: 22s;
+     animation-delay: 11s;
+  }
+
+  .line:nth-child(6) {
+    animation-name: animate-line-2;
+    animation-duration: 16s;
+    border-radius: 1rem 0 0 0;
+    border-width: 1px 0 0 1px;
+    animation-delay: 13s;
+  }
+}
+
+@keyframes spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
+
+@keyframes animate-line-1 {
+  0% { transform: translate(-100px, -100px) scale(0.5); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  100% { transform: translate(calc(100vw + 100px), calc(100vh + 100px)) scale(1.5); opacity: 0; }
+}
+
+@keyframes animate-line-2 {
+  0% { transform: translate(calc(100vw + 100px), -100px) scale(0.5); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  100% { transform: translate(-100px, calc(100vh + 100px)) scale(1.5); opacity: 0; }
+}
+
+@keyframes animate-line-3 {
+  0% { transform: translate(50vw, -100px) scale(0.5); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  100% { transform: translate(20vw, calc(100vh + 100px)) scale(1.2); opacity: 0; }
+}
+
+@keyframes animate-line-4 {
+  0% { transform: translate(-100px, 50vh) scale(0.5); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  100% { transform: translate(calc(100vw + 100px), 20vh) scale(1.2); opacity: 0; }
 }
