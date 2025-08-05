@@ -1,4 +1,5 @@
 import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 import SearchTabs from '@/components/features/search-tabs';
 
 export default function DashboardPage() {
@@ -11,6 +12,7 @@ export default function DashboardPage() {
            <SearchTabs />
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

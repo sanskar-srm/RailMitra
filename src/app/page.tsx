@@ -1,6 +1,7 @@
 import { Clock, Zap, ShieldCheck, Star, CheckCircle } from "lucide-react";
 import Link from 'next/link';
 import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 import SearchTabs from '@/components/features/search-tabs';
 
 const coreFeatures = [
@@ -113,6 +114,7 @@ export default function Home() {
           </div>
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
