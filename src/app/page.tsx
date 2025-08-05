@@ -91,7 +91,7 @@ export default function Home() {
             <SearchTabs />
           </div>
 
-          <div className="mt-16 grid grid-cols-3 gap-8 text-center">
+          <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-8 text-center">
             {stats.map((stat) => (
               <div key={stat.label}>
                 <p className="text-4xl font-bold">{stat.value}</p>
