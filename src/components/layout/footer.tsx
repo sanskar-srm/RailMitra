@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
               <TrainFront className="h-7 w-7" />
-              <span className="text-2xl font-bold">RailMitra</span>
+              <span className="text-2xl font-bold">Railमित्र</span>
             </Link>
             <p className="text-gray-400 text-sm">Your all-in-one companion for Indian Railways travel.</p>
           </div>
@@ -33,7 +33,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-white/10 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} RailMitra. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Railमित्र. All Rights Reserved.</p>
           <p className="mt-2">MADE WITH ❤️ BY SANSKAR FOR RAIL YATRI</p>
         </div>
       </div>

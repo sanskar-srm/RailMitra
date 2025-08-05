@@ -33,7 +33,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
           <div className="text-center space-y-4 mb-16">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
-              About <span className="text-accent">RailMitra</span>
+              About <span className="text-accent">Railमित्र</span>
             </h1>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
               We are a passionate team dedicated to simplifying railway travel across India. Our mission is to provide the most accurate, real-time, and user-friendly train information platform.
@@ -52,7 +52,7 @@ export default function AboutPage() {
                 <div>
                   <h2 className="text-2xl font-bold">Our Story</h2>
                   <p className="text-gray-400 mt-2">
-                    Founded in 2024, RailMitra started as a small project fueled by the frustration of navigating a complex railway system. We envisioned a single platform that would bring clarity and ease to millions of travelers. Today, we are proud to serve thousands of users daily.
+                    Founded in 2024, Railमित्र started as a small project fueled by the frustration of navigating a complex railway system. We envisioned a single platform that would bring clarity and ease to millions of travelers. Today, we are proud to serve thousands of users daily.
                   </p>
                 </div>
               </div>
@@ -73,7 +73,7 @@ export default function AboutPage() {
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-4xl font-bold tracking-tighter">Meet the Team</h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              The driving force behind RailMitra's success.
+              The driving force behind Railमित्र's success.
             </p>
           </div>
 

@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/layout/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'RailMitra',
+  title: 'Railमित्र',
   description: 'Real-time train tracking, PNR status, live station updates, and more. The most comprehensive railway tracking platform for India.',
 };
 

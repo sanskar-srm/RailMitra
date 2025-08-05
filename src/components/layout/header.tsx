@@ -11,12 +11,12 @@ export default function Header() {
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
           <TrainFront className="h-7 w-7" />
-          <span className="text-2xl font-bold">RailMitra</span>
+          <span className="text-2xl font-bold">Railमित्र</span>
         </Link>
         <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/#features" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Features</Link>
-            <Link href="/dashboard" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Dashboard</Link>
-            <Link href="/about" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">About</Link>
+            <Link href="/#features" className="text-sm font-medium text-gray-300 hover:text-accent transition-colors">Features</Link>
+            <Link href="/dashboard" className="text-sm font-medium text-gray-300 hover:text-accent transition-colors">Dashboard</Link>
+            <Link href="/about" className="text-sm font-medium text-gray-300 hover:text-accent transition-colors">About</Link>
         </nav>
         <div className="flex items-center gap-4">
             <ThemeToggle />
