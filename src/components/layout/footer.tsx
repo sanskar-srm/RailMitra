@@ -34,6 +34,7 @@ export default function Footer() {
         </div>
         <div className="mt-8 border-t border-white/10 pt-8 text-center text-sm text-gray-400">
           <p>&copy; {new Date().getFullYear()} RailMitra. All Rights Reserved.</p>
+          <p className="mt-2">MADE WITH ❤️ BY SANSKAR FOR RAIL YATRI</p>
         </div>
       </div>
     </footer>
