@@ -81,8 +81,18 @@ export default function LiveTrainStatus() {
 
             <div>
               <Label className="text-gray-400">Journey Progress</Label>
-              <Progress value={getProgress()} className="mt-2 h-2 bg-white/10 [&>div]:bg-green-500" />
-              <div className="flex justify-between text-xs text-gray-400 mt-1">
+              <div className="relative mt-4">
+                <div className="h-1 bg-white/10 rounded-full">
+                  <div className="h-1 bg-green-500 rounded-full" style={{ width: `${getProgress()}%` }}></div>
+                </div>
+                <div
+                  className="absolute -top-3 transition-all duration-500 ease-out"
+                  style={{ left: `calc(${getProgress()}% - 12px)` }}
+                >
+                  <TrainFront className="h-6 w-6 text-green-400" />
+                </div>
+              </div>
+              <div className="flex justify-between text-xs text-gray-400 mt-4">
                 <span>{trainData.source_station_name}</span>
                 <span>{getProgress().toFixed(0)}% complete</span>
                 <span>{trainData.destination_station_name}</span>
@@ -106,9 +116,20 @@ export default function LiveTrainStatus() {
                     <p className="text-xs text-gray-400">On Time</p>
                 </div>
              </div>
-             <Progress value={75} className="mt-4 h-2 bg-white/10 [&>div]:bg-green-500" />
-             <div className="flex justify-end text-xs text-gray-400 mt-1">
-                <span>Platform 16</span>
+             <div className="relative mt-6">
+                <div className="h-1 bg-white/10 rounded-full">
+                  <div className="h-1 bg-green-500 rounded-full" style={{ width: `75%` }}></div>
+                </div>
+                <div
+                  className="absolute -top-3"
+                  style={{ left: `calc(75% - 12px)` }}
+                >
+                  <TrainFront className="h-6 w-6 text-green-400" />
+                </div>
+              </div>
+             <div className="flex justify-between text-xs text-gray-400 mt-4">
+                <span>NEW DELHI</span>
+                <span>MUMBAI CENTRAL</span>
              </div>
           </CardContent>
         </Card>
