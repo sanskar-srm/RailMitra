@@ -88,10 +88,16 @@ export default {
             height: '0',
           },
         },
+        spin: {
+          to: {
+            '--angle': '360deg',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        spin: 'spin 4s linear infinite',
       },
     },
   },

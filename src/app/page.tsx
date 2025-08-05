@@ -71,11 +71,13 @@ export default function Home() {
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 {coreFeatures.map((feature) => (
-                  <Link href={feature.href} key={feature.title} className="bg-white/5 backdrop-blur-sm p-5 rounded-xl border border-white/10 space-y-2 block hover:bg-white/10 transition-colors">
-                    {feature.icon}
-                    <h3 className="font-semibold">{feature.title}</h3>
-                    <p className="text-sm text-gray-400">{feature.description}</p>
-                  </Link>
+                   <div key={feature.title} className="glowing-card-container rounded-xl">
+                    <Link href={feature.href} className="glowing-card-content bg-white/5 backdrop-blur-sm p-5 space-y-2 block transition-colors h-full">
+                      {feature.icon}
+                      <h3 className="font-semibold">{feature.title}</h3>
+                      <p className="text-sm text-gray-400">{feature.description}</p>
+                    </Link>
+                  </div>
                 ))}
               </div>
             </div>
