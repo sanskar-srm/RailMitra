@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { TrainFront, Github, Twitter, Linkedin } from 'lucide-react';
+import { TrainFront, Github, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -28,6 +28,7 @@ export default function Footer() {
               <Link href="#" className="text-gray-400 hover:text-white"><Github /></Link>
               <Link href="#" className="text-gray-400 hover:text-white"><Twitter /></Link>
               <Link href="#" className="text-gray-400 hover:text-white"><Linkedin /></Link>
+              <Link href="#" className="text-gray-400 hover:text-white"><Instagram /></Link>
             </div>
           </div>
         </div>
