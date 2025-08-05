@@ -58,7 +58,11 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="inline-block bg-white/10 text-xs px-3 py-1 rounded-full">
+              <div className="inline-flex items-center gap-2 bg-white/10 text-xs px-3 py-1 rounded-full">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
                 Live Train Tracking Platform
               </div>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
