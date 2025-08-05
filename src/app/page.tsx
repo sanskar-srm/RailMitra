@@ -32,16 +32,16 @@ const coreFeatures = [
 ];
 
 const allFeatures = [
-  "Live Train Status",
-  "PNR Status Check",
-  "Live Station Arrivals",
-  "Seat Availability Checker",
-  "Fare Comparison between Trains",
-  "Train Number & Name Lookup",
-  "Full Train Schedule",
-  "Cancelled / Diverted / Rescheduled Train Info",
-  "Live Train on Map (real-time GPS)",
-  "Coach Layout and Position",
+  { name: "Live Train Status", href: "/dashboard" },
+  { name: "PNR Status Check", href: "/dashboard" },
+  { name: "Live Station Arrivals", href: "/dashboard" },
+  { name: "Seat Availability Checker", href: "/dashboard" },
+  { name: "Fare Comparison between Trains", href: "/dashboard" },
+  { name: "Train Number & Name Lookup", href: "/dashboard" },
+  { name: "Full Train Schedule", href: "/dashboard" },
+  { name: "Cancelled / Diverted / Rescheduled Train Info", href: "/dashboard" },
+  { name: "Live Train on Map (real-time GPS)", href: "/dashboard" },
+  { name: "Coach Layout and Position", href: "/coach-position" },
 ];
 
 const stats = [
@@ -111,10 +111,12 @@ export default function Home() {
             </div>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {allFeatures.map((feature) => (
-                <div key={feature} className="flex items-center gap-4 bg-white/5 p-4 rounded-lg border border-white/10">
-                  <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                  <span className="font-medium">{feature}</span>
-                </div>
+                 <Link key={feature.name} href={feature.href}>
+                  <div className="flex items-center gap-4 bg-white/5 p-4 rounded-lg border border-white/10 h-full transition-all hover:border-primary/50 hover:bg-primary/10">
+                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
+                    <span className="font-medium">{feature.name}</span>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
