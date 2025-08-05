@@ -3,39 +3,39 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Search, Ticket, Users, CheckCircle, Clock, TrainFront, Loader2 } from 'lucide-react';
+import { Search, Users, CheckCircle, Clock, TrainFront, Loader2 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { getPnrStatus } from '@/actions/get-pnr-status';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export default function PnrStatus() {
   const [pnr, setPnr] = useState('');
   const [pnrData, setPnrData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!pnr || pnr.length !== 10) return;
+    if (!pnr || pnr.length !== 10) {
+        setError("Please enter a valid 10-digit PNR number.");
+        return;
+    };
     setLoading(true);
     setPnrData(null);
-    // Mock API call
-    setTimeout(() => {
-      setPnrData({
-        pnr: pnr,
-        trainName: 'Shatabdi Express',
-        trainNumber: '12002',
-        from: 'New Delhi (NDLS)',
-        to: 'Bhopal (BPL)',
-        dateOfJourney: '2024-12-25',
-        class: 'AC Chair Car (CC)',
-        passengers: [
-          { number: 1, status: 'CNF', coach: 'C4', berth: '32' },
-          { number: 2, status: 'CNF', coach: 'C4', berth: '33' },
-          { number: 3, status: 'WL', coach: 'N/A', berth: '1' },
-        ],
-        chartPrepared: true,
-      });
-      setLoading(false);
-    }, 1500);
+    setError(null);
+    
+    try {
+        const result = await getPnrStatus({ pnrNumber: pnr });
+        if (result.error) {
+            throw new Error(result.error);
+        }
+        setPnrData(result.data);
+    } catch (err: any) {
+        console.error(err);
+        setError(err.message || "Failed to fetch PNR data. Please check the PNR number.");
+    } finally {
+        setLoading(false);
+    }
   };
 
   return (
@@ -57,20 +57,22 @@ export default function PnrStatus() {
             </Button>
         </form>
 
-      {loading && <div className="text-center p-8"><p>Checking PNR status...</p></div>}
+      {error && <Alert variant="destructive"><AlertTitle>Error</AlertTitle><AlertDescription>{error}</AlertDescription></Alert>}
+      
+      {loading && <div className="text-center p-8"><Loader2 className="h-8 w-8 animate-spin mx-auto" /><p className="mt-2">Checking PNR status...</p></div>}
       
       {pnrData && (
         <Card className="animate-in fade-in-50 bg-white/5 border-white/10 text-white">
           <CardHeader>
-            <CardTitle>Booking Details for PNR: {pnrData.pnr}</CardTitle>
+            <CardTitle>Booking Details for PNR: {pnrData.pnr_number}</CardTitle>
             <CardDescription className="flex items-center gap-2 pt-2 text-gray-400">
-              <TrainFront className="h-4 w-4"/> {pnrData.trainName} ({pnrData.trainNumber}) | Date of Journey: {pnrData.dateOfJourney}
+              <TrainFront className="h-4 w-4"/> {pnrData.train_name} ({pnrData.train_number}) | Date of Journey: {pnrData.journey_date}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-3 gap-4 mb-6 text-sm">
-                <div><span className="text-gray-400">From:</span><p className="font-semibold">{pnrData.from}</p></div>
-                <div><span className="text-gray-400">To:</span><p className="font-semibold">{pnrData.to}</p></div>
+                <div><span className="text-gray-400">From:</span><p className="font-semibold">{pnrData.from_station.name} ({pnrData.from_station.code})</p></div>
+                <div><span className="text-gray-400">To:</span><p className="font-semibold">{pnrData.to_station.name} ({pnrData.to_station.code})</p></div>
                 <div><span className="text-gray-400">Class:</span><p className="font-semibold">{pnrData.class}</p></div>
             </div>
             
@@ -79,12 +81,12 @@ export default function PnrStatus() {
             <div className="mt-6">
                 <h3 className="font-semibold flex items-center gap-2 mb-4 text-lg"><Users /> Passenger Status</h3>
                 <div className="space-y-3">
-                    {pnrData.passengers.map((p: any, i: number) => (
+                    {pnrData.passenger_info.map((p: any, i: number) => (
                         <div key={i} className="flex flex-wrap justify-between items-center bg-white/5 p-3 rounded-lg">
-                            <p className="font-medium">Passenger {p.number}</p>
-                            <p className={`font-bold ${p.status === 'CNF' ? 'text-green-400' : 'text-orange-400'}`}>{p.status}</p>
+                            <p className="font-medium">Passenger {p.passenger_number}</p>
+                            <p className={`font-bold ${p.current_status.toLowerCase() === 'cnf' ? 'text-green-400' : 'text-orange-400'}`}>{p.current_status}</p>
                             <p className="text-gray-400">
-                              {p.status === 'CNF' ? `Coach: ${p.coach}, Berth: ${p.berth}` : `Waiting List: ${p.berth}`}
+                              {p.current_status.toLowerCase() === 'cnf' ? `Coach: ${p.coach}, Berth: ${p.berth}` : `Booking Status: ${p.booking_status}`}
                             </p>
                         </div>
                     ))}
@@ -92,18 +94,18 @@ export default function PnrStatus() {
             </div>
           </CardContent>
           <CardFooter>
-            <div className={`flex items-center gap-2 text-sm ${pnrData.chartPrepared ? 'text-green-400' : 'text-gray-400'}`}>
-                {pnrData.chartPrepared ? <CheckCircle /> : <Clock />}
-                <span>{pnrData.chartPrepared ? 'Charting is Done' : 'Charting Not Prepared'}</span>
+            <div className={`flex items-center gap-2 text-sm ${pnrData.chart_prepared ? 'text-green-400' : 'text-gray-400'}`}>
+                {pnrData.chart_prepared ? <CheckCircle /> : <Clock />}
+                <span>{pnrData.chart_prepared ? 'Charting is Done' : 'Charting Not Prepared'}</span>
             </div>
           </CardFooter>
         </Card>
       )}
 
-      {!loading && !pnrData && (
+      {!loading && !pnrData && !error && (
          <Card className="bg-white/5 border-white/10 text-white">
           <CardContent className="p-6">
-             <p className="text-center text-gray-400">Enter a PNR to check ticket status.</p>
+             <p className="text-center text-gray-400">Enter a 10-digit PNR to check your ticket status.</p>
           </CardContent>
         </Card>
       )}
