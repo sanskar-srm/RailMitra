@@ -81,12 +81,12 @@ export default function PnrStatus() {
             <div className="mt-6">
                 <h3 className="font-semibold flex items-center gap-2 mb-4 text-lg"><Users /> Passenger Status</h3>
                 <div className="space-y-3">
-                    {pnrData.passenger_status.map((p: any, i: number) => (
+                    {pnrData.passenger_info && pnrData.passenger_info.map((p: any, i: number) => (
                         <div key={i} className="flex flex-wrap justify-between items-center bg-white/5 p-3 rounded-lg">
                             <p className="font-medium">Passenger {p.number}</p>
-                            <p className={`font-bold ${p.current_status_code.toLowerCase() === 'cnf' ? 'text-green-400' : 'text-orange-400'}`}>{p.current_status}</p>
+                            <p className={`font-bold ${p.current_status_code?.toLowerCase() === 'cnf' ? 'text-green-400' : 'text-orange-400'}`}>{p.current_status}</p>
                             <p className="text-gray-400">
-                              {p.current_status_code.toLowerCase() === 'cnf' ? `Coach: ${p.current_coach}, Berth: ${p.current_berth_no}` : `Booking Status: ${p.booking_status}`}
+                              {p.current_status_code?.toLowerCase() === 'cnf' ? `Coach: ${p.current_coach}, Berth: ${p.current_berth_no}` : `Booking Status: ${p.booking_status}`}
                             </p>
                         </div>
                     ))}
