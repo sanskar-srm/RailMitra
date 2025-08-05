@@ -66,7 +66,7 @@ export default function Home() {
                 Live Train Tracking Platform
               </div>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
-                Track Your <span className="text-accent">Journey</span> Live
+                Track Your <span className="text-accent font-display text-8xl md:text-9xl">Journey</span> Live
               </h1>
               <p className="text-lg text-gray-300 max-w-lg">
                 Real-time train tracking, PNR status, live station updates, and more. The most comprehensive railway tracking platform for India.
