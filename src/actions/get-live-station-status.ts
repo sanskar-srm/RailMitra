@@ -11,7 +11,7 @@ export async function getLiveStationStatus({ stationCode }: { stationCode: strin
     return { error: 'RAPIDAPI_HOST environment variable is not set.' };
   }
   
-  const url = `https://${apiHost}/api/v1/getStationDetailsByCode?station_code=${stationCode}`;
+  const url = `https://${apiHost}/api/v2/getStationDetailsByCode?station_code=${stationCode}`;
   
   try {
     const response = await fetch(url, {
