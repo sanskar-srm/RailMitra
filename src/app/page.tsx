@@ -63,7 +63,7 @@ export default function Home() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                Live Train Tracking Platform
+                Railway Servers LIVE
               </div>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
                 Track Your <span className="text-accent font-display text-8xl md:text-9xl">Journey</span> Live
