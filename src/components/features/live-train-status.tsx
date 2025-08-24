@@ -1,3 +1,4 @@
+
 "use client";
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -6,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Search, TrainFront, Clock, MapPin, Gauge, Route, Loader2 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { getLiveTrainStatus } from '@/actions/get-live-train-status';
 
@@ -105,18 +105,21 @@ export default function LiveTrainStatus() {
 
        {!loading && !error && !trainData && (
         <Card className="bg-white/5 border-white/10 text-white">
-          <CardContent className="p-6">
-             <div className="flex justify-between items-center">
-                <div>
-                    <h3 className="font-semibold">12001 Shatabdi Express</h3>
-                    <p className="text-sm text-gray-400">New Delhi → Mumbai</p>
-                </div>
-                <div className="text-right">
-                    <p className="text-sm font-semibold text-green-400">RUNNING</p>
-                    <p className="text-xs text-gray-400">On Time</p>
-                </div>
-             </div>
-             <div className="relative mt-6">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2"><TrainFront /> SHATABDI EXP (12001)</CardTitle>
+            <CardDescription>Showing demo data. Search for a train to see live results.</CardDescription>
+          </CardHeader>
+          <CardContent>
+             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Current Station</p><p className="font-semibold">BHOPAL JN</p></div>
+                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Next Station</p><p className="font-semibold">AGRA CANTT</p></div>
+                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Delay</p><p className="font-semibold text-green-400">On time</p></div>
+                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Status</p><p className="font-semibold">Arrived</p></div>
+            </div>
+
+            <div>
+              <Label className="text-gray-400 mt-6 block">Journey Progress</Label>
+              <div className="relative mt-4">
                 <div className="h-1 bg-white/10 rounded-full">
                   <div className="h-1 bg-green-500 rounded-full" style={{ width: `75%` }}></div>
                 </div>
@@ -127,10 +130,12 @@ export default function LiveTrainStatus() {
                   <TrainFront className="h-6 w-6 text-green-400" />
                 </div>
               </div>
-             <div className="flex justify-between text-xs text-gray-400 mt-4">
+              <div className="flex justify-between text-xs text-gray-400 mt-4">
                 <span>NEW DELHI</span>
+                <span>75% complete</span>
                 <span>MUMBAI CENTRAL</span>
-             </div>
+              </div>
+            </div>
           </CardContent>
         </Card>
       )}

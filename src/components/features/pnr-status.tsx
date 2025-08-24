@@ -1,9 +1,10 @@
+
 "use client";
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Users, CheckCircle, Clock, TrainFront, Loader2 } from 'lucide-react';
+import { Search, Users, CheckCircle, Clock, TrainFront, Loader2, Dot } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { getPnrStatus } from '@/actions/get-pnr-status';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -128,9 +129,41 @@ export default function PnrStatus() {
 
       {!loading && !pnrData && !error && (
         <Card className="bg-white/5 border-white/10 text-white">
-          <CardContent className="p-6">
-            <p className="text-center text-gray-400">Enter a 10-digit PNR to check your ticket status.</p>
+          <CardHeader>
+            <CardTitle>Booking Details for PNR: 2416423334</CardTitle>
+            <CardDescription className="flex items-center gap-2 pt-2 text-gray-400">
+              <TrainFront className="h-4 w-4" />
+              MUMBAI RAJDHANI (12951) | Date of Journey: 25 Dec 2024
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-3 gap-4 mb-6 text-sm">
+              <div><span className="text-gray-400">From:</span><p className="font-semibold">NEW DELHI (NDLS)</p></div>
+              <div><span className="text-gray-400">To:</span><p className="font-semibold">MUMBAI CENTRAL (MMCT)</p></div>
+              <div><span className="text-gray-400">Class:</span><p className="font-semibold">AC 2 Tier (2A)</p></div>
+            </div>
+            <Separator className="bg-white/10" />
+            <div className="mt-6">
+              <h3 className="font-semibold flex items-center gap-2 mb-4 text-lg"><Users /> Passenger Status</h3>
+              <div className="space-y-3">
+                <div className="flex flex-wrap justify-between items-center bg-white/5 p-3 rounded-lg">
+                    <p className="font-medium">Passenger 1</p>
+                    <p className="font-bold text-green-400">CONFIRMED</p>
+                    <p className="text-gray-400">Coach: A2, Berth: 45</p>
+                </div>
+                <div className="flex flex-wrap justify-between items-center bg-white/5 p-3 rounded-lg">
+                    <p className="font-medium">Passenger 2</p>
+                    <p className="font-bold text-green-400">CONFIRMED</p>
+                    <p className="text-gray-400">Coach: A2, Berth: 46</p>
+                </div>
+              </div>
+            </div>
           </CardContent>
+          <CardFooter>
+             <div className="flex items-center gap-2 text-sm text-green-400">
+                <CheckCircle /><span>Charting is Done</span>
+             </div>
+          </CardFooter>
         </Card>
       )}
     </div>
