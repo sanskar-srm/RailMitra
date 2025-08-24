@@ -113,7 +113,7 @@ export default function LiveTrainStatus() {
              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                 <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Current Station</p><p className="font-semibold">BHOPAL JN</p></div>
                 <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Next Station</p><p className="font-semibold">AGRA CANTT</p></div>
-                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Delay</p><p className="font-semibold text-green-400">On time</p></div>
+                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Delay</p><p className="font-semibold text-red-400">39 Minutes</p></div>
                 <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Status</p><p className="font-semibold">Arrived</p></div>
             </div>
 
