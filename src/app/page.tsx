@@ -139,7 +139,7 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 md:px-6 pb-12 md:pb-20">
-          <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-8 text-center">
+          <div className="bg-white/5 border border-white/10 rounded-xl p-8 mt-24 grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-8 text-center">
             {stats.map((stat) => (
               <div key={stat.label}>
                 <p className="text-4xl font-bold">{stat.value}</p>
