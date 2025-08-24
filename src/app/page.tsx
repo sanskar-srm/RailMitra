@@ -39,7 +39,6 @@ const allFeatures = [
   { name: "Fare Comparison between Trains", href: "/dashboard" },
   { name: "Full Train Schedule", href: "/dashboard" },
   { name: "Cancelled / Diverted / Rescheduled Train Info", href: "/dashboard" },
-  { name: "Live Train on Map (real-time GPS)", href: "/dashboard" },
   { name: "Coach Layout and Position", href: "/coach-position" },
 ];
 
