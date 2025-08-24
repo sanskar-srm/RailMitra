@@ -37,7 +37,6 @@ const allFeatures = [
   { name: "Live Station Arrivals", href: "/dashboard" },
   { name: "Seat Availability Checker", href: "/dashboard" },
   { name: "Fare Comparison between Trains", href: "/dashboard" },
-  { name: "Train Number & Name Lookup", href: "/dashboard" },
   { name: "Full Train Schedule", href: "/dashboard" },
   { name: "Cancelled / Diverted / Rescheduled Train Info", href: "/dashboard" },
   { name: "Live Train on Map (real-time GPS)", href: "/dashboard" },
