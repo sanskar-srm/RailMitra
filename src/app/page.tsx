@@ -1,8 +1,12 @@
-import { Clock, Zap, ShieldCheck, Star, CheckCircle } from "lucide-react";
+
+"use client";
+
+import { Clock, Zap, ShieldCheck, Star, CheckCircle, AlertTriangle } from "lucide-react";
 import Link from 'next/link';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import SearchTabs from '@/components/features/search-tabs';
+import { useToast } from "@/hooks/use-toast";
 
 const coreFeatures = [
   {
@@ -38,7 +42,7 @@ const allFeatures = [
   { name: "Seat Availability Checker", href: "/dashboard" },
   { name: "Fare Comparison between Trains", href: "/dashboard" },
   { name: "Full Train Schedule", href: "/dashboard" },
-  { name: "Cancelled / Diverted / Rescheduled Train Info", href: "/dashboard" },
+  { name: "Cancelled / Diverted / Rescheduled Train Info", href: "#", specialAction: "apiError" },
   { name: "Coach Layout and Position", href: "/coach-position" },
 ];
 
@@ -49,6 +53,19 @@ const stats = [
 ];
 
 export default function Home() {
+  const { toast } = useToast();
+
+  const handleFeatureClick = (feature: typeof allFeatures[0], e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (feature.specialAction === 'apiError') {
+      e.preventDefault();
+      toast({
+        variant: "destructive",
+        title: "API Limit Reached",
+        description: "This feature is currently unavailable. Please try again later.",
+      });
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -108,14 +125,24 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allFeatures.map((feature) => (
-                 <Link key={feature.name} href={feature.href}>
-                  <div className="flex items-center gap-4 bg-white/5 p-4 rounded-lg border border-white/10 h-full transition-all hover:border-primary/50 hover:bg-primary/10">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span className="font-medium">{feature.name}</span>
-                  </div>
-                </Link>
-              ))}
+              {allFeatures.map((feature) => {
+                const isApiError = feature.specialAction === 'apiError';
+                const Wrapper = isApiError ? 'div' : Link;
+                const props = isApiError ? { onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => handleFeatureClick(feature, e), className: "cursor-pointer" } : { href: feature.href };
+
+                return (
+                  <Wrapper key={feature.name} {...props}>
+                    <div className="flex items-center gap-4 bg-white/5 p-4 rounded-lg border border-white/10 h-full transition-all hover:border-primary/50 hover:bg-primary/10">
+                      {isApiError ? (
+                        <AlertTriangle className="h-6 w-6 text-red-400 flex-shrink-0" />
+                      ) : (
+                        <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
+                      )}
+                      <span className="font-medium">{feature.name}</span>
+                    </div>
+                  </Wrapper>
+                );
+              })}
             </div>
           </div>
         </section>
