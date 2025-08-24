@@ -43,7 +43,7 @@ const allFeatures = [
   { name: "Fare Comparison between Trains", href: "/dashboard" },
   { name: "Full Train Schedule", href: "#", specialAction: "apiError" },
   { name: "Cancelled / Diverted / Rescheduled Train Info", href: "#", specialAction: "apiError" },
-  { name: "Coach Layout and Position", href: "/coach-position" },
+  { name: "Coach Layout and Position", href: "#", specialAction: "apiError" },
 ];
 
 const stats = [
@@ -105,38 +105,38 @@ export default function Home() {
           <div className="mt-16">
             <SearchTabs />
           </div>
+
+          <section id="features" className="py-16 md:py-24">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="text-center space-y-4">
+                <h2 className="text-4xl font-bold tracking-tighter">All-in-One Train Companion</h2>
+                <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                  From real-time tracking to seat availability, we've got everything you need for a smooth journey.
+                </p>
+              </div>
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {allFeatures.map((feature) => {
+                  const isApiError = feature.specialAction === 'apiError';
+                  const Wrapper = isApiError ? 'div' : Link;
+                  const props = isApiError ? { onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => handleFeatureClick(feature, e), className: "cursor-pointer" } : { href: feature.href };
+
+                  return (
+                    <Wrapper key={feature.name} {...props}>
+                      <div className="flex items-center gap-4 bg-white/5 p-4 rounded-lg border border-white/10 h-full transition-all hover:border-primary/50 hover:bg-primary/10">
+                        {isApiError ? (
+                          <AlertTriangle className="h-8 w-8 text-red-400 flex-shrink-0" />
+                        ) : (
+                          <CheckCircle className="h-8 w-8 text-green-400 flex-shrink-0" />
+                        )}
+                        <span className="font-medium">{feature.name}</span>
+                      </div>
+                    </Wrapper>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
         </div>
-
-        <section id="features" className="py-16 md:py-24">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl font-bold tracking-tighter">All-in-One Train Companion</h2>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                From real-time tracking to seat availability, we've got everything you need for a smooth journey.
-              </p>
-            </div>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allFeatures.map((feature) => {
-                const isApiError = feature.specialAction === 'apiError';
-                const Wrapper = isApiError ? 'div' : Link;
-                const props = isApiError ? { onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => handleFeatureClick(feature, e), className: "cursor-pointer" } : { href: feature.href };
-
-                return (
-                  <Wrapper key={feature.name} {...props}>
-                    <div className="flex items-center gap-4 bg-white/5 p-4 rounded-lg border border-white/10 h-full transition-all hover:border-primary/50 hover:bg-primary/10">
-                      {isApiError ? (
-                        <AlertTriangle className="h-8 w-8 text-red-400 flex-shrink-0" />
-                      ) : (
-                        <CheckCircle className="h-8 w-8 text-green-400 flex-shrink-0" />
-                      )}
-                      <span className="font-medium">{feature.name}</span>
-                    </div>
-                  </Wrapper>
-                );
-              })}
-            </div>
-          </div>
-        </section>
 
         <div className="container mx-auto px-4 md:px-6 pb-12 md:pb-20">
           <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-8 text-center">
