@@ -1,3 +1,4 @@
+
 'use server';
 
 export async function getPnrStatus({ pnrNumber }: { pnrNumber: string }) {
@@ -23,6 +24,9 @@ export async function getPnrStatus({ pnrNumber }: { pnrNumber: string }) {
     });
 
     if (!response.ok) {
+       if (response.status === 429) {
+        return { error: 'You have exceeded the monthly API quota. Please check your RapidAPI plan.' };
+      }
       const errorText = await response.text();
       console.error("API Error:", errorText);
       return { error: `API request failed with status ${response.status}` };
