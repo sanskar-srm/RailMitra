@@ -155,8 +155,8 @@ export default function PnrStatus() {
             </div>
           </CardContent>
           <CardFooter>
-             <div className="flex items-center gap-2 text-sm text-green-400">
-                <CheckCircle /><span>Charting is Done</span>
+             <div className="flex items-center gap-2 text-sm text-red-400">
+                <Clock /><span>Chart not prepared</span>
              </div>
           </CardFooter>
         </Card>
