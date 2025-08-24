@@ -16,7 +16,7 @@ export default function AboutPage() {
           </div>
 
           <div className="max-w-4xl mx-auto space-y-8">
-            <Card className="bg-white/5 border-white/10">
+            <Card className="bg-white/5 border-white/10 transition-transform duration-300 ease-in-out hover:scale-105">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-2xl">
                   <Train className="h-6 w-6 text-primary" />
@@ -30,7 +30,7 @@ export default function AboutPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/5 border-white/10">
+            <Card className="bg-white/5 border-white/10 transition-transform duration-300 ease-in-out hover:scale-105">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-2xl">
                   <Rocket className="h-6 w-6 text-primary" />
@@ -44,7 +44,7 @@ export default function AboutPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/5 border-white/10">
+            <Card className="bg-white/5 border-white/10 transition-transform duration-300 ease-in-out hover:scale-105">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-2xl">
                   <Target className="h-6 w-6 text-primary" />
@@ -58,7 +58,7 @@ export default function AboutPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/5 border-white/10">
+            <Card className="bg-white/5 border-white/10 transition-transform duration-300 ease-in-out hover:scale-105">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-2xl">
                   <Eye className="h-6 w-6 text-primary" />
