@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { TrainFront } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ThemeToggle } from './theme-toggle';
 
 export default function Header() {
   return (
@@ -19,7 +18,6 @@ export default function Header() {
             <Link href="/about" className="text-sm font-medium text-gray-300 hover:text-accent transition-colors">About</Link>
         </nav>
         <div className="flex items-center gap-4">
-            <ThemeToggle />
         </div>
       </div>
     </header>
