@@ -43,7 +43,7 @@ const allFeatures = [
   { name: "Fare Comparison between Trains", href: "/dashboard" },
   { name: "Full Train Schedule", href: "#", specialAction: "apiError" },
   { name: "Cancelled / Diverted / Rescheduled Train Info", href: "#", specialAction: "apiError" },
-  { name: "Coach Layout and Position", href: "#", specialAction: "apiError" },
+  { name: "Coach Layout and Position", href: "/coach-position" },
 ];
 
 const stats = [
@@ -105,18 +105,9 @@ export default function Home() {
           <div className="mt-16">
             <SearchTabs />
           </div>
-
-          <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-8 text-center">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <p className="text-4xl font-bold">{stat.value}</p>
-                <p className="text-gray-400">{stat.label}</p>
-              </div>
-            ))}
-          </div>
         </div>
 
-        <section id="features" className="py-16 md:py-24 bg-white/5">
+        <section id="features" className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
             <div className="text-center space-y-4">
               <h2 className="text-4xl font-bold tracking-tighter">All-in-One Train Companion</h2>
@@ -134,9 +125,9 @@ export default function Home() {
                   <Wrapper key={feature.name} {...props}>
                     <div className="flex items-center gap-4 bg-white/5 p-4 rounded-lg border border-white/10 h-full transition-all hover:border-primary/50 hover:bg-primary/10">
                       {isApiError ? (
-                        <AlertTriangle className="h-6 w-6 text-red-400 flex-shrink-0" />
+                        <AlertTriangle className="h-8 w-8 text-red-400 flex-shrink-0" />
                       ) : (
-                        <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
+                        <CheckCircle className="h-8 w-8 text-green-400 flex-shrink-0" />
                       )}
                       <span className="font-medium">{feature.name}</span>
                     </div>
@@ -146,6 +137,17 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <div className="container mx-auto px-4 md:px-6 pb-12 md:pb-20">
+          <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-8 text-center">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <p className="text-4xl font-bold">{stat.value}</p>
+                <p className="text-gray-400">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </main>
       <Footer />
     </div>
