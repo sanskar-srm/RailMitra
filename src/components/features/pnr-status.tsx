@@ -139,7 +139,7 @@ export default function PnrStatus() {
           <CardContent>
             <div className="grid md:grid-cols-3 gap-4 mb-6 text-sm">
               <div><span className="text-gray-400">From:</span><p className="font-semibold">NEW DELHI (NDLS)</p></div>
-              <div><span className="text-gray-400">To:</span><p className="font-semibold">MUMBAI CENTRAL (MMCT)</p></div>
+              <div><span className="text-gray-400">To:</span><p className="font-semibold">Koderma Junction (KQR)</p></div>
               <div><span className="text-gray-400">Class:</span><p className="font-semibold">AC 2 Tier (2A)</p></div>
             </div>
             <Separator className="bg-white/10" />
@@ -147,14 +147,9 @@ export default function PnrStatus() {
               <h3 className="font-semibold flex items-center gap-2 mb-4 text-lg"><Users /> Passenger Status</h3>
               <div className="space-y-3">
                 <div className="flex flex-wrap justify-between items-center bg-white/5 p-3 rounded-lg">
-                    <p className="font-medium">Passenger 1</p>
+                    <p className="font-medium">Sanskar Bhadani</p>
                     <p className="font-bold text-green-400">CONFIRMED</p>
                     <p className="text-gray-400">Coach: A2, Berth: 45</p>
-                </div>
-                <div className="flex flex-wrap justify-between items-center bg-white/5 p-3 rounded-lg">
-                    <p className="font-medium">Passenger 2</p>
-                    <p className="font-bold text-green-400">CONFIRMED</p>
-                    <p className="text-gray-400">Coach: A2, Berth: 46</p>
                 </div>
               </div>
             </div>
