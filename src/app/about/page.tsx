@@ -1,29 +1,7 @@
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Users, Target, Rocket } from 'lucide-react';
-
-const teamMembers = [
-  {
-    name: "Sanskar",
-    role: "Founder & CEO",
-    avatarUrl: "https://placehold.co/100x100.png",
-    dataAiHint: "person portrait"
-  },
-  {
-    name: "Jane Doe",
-    role: "Lead Developer",
-    avatarUrl: "https://placehold.co/100x100.png",
-    dataAiHint: "person portrait"
-  },
-  {
-    name: "John Smith",
-    role: "UX/UI Designer",
-    avatarUrl: "https://placehold.co/100x100.png",
-    dataAiHint: "person portrait"
-  },
-];
+import { Train, Rocket, Target, Eye } from 'lucide-react';
 
 export default function AboutPage() {
   return (
@@ -35,63 +13,64 @@ export default function AboutPage() {
             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
               About <span className="text-accent">Railमित्र</span>
             </h1>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              We are a passionate team dedicated to simplifying railway travel across India. Our mission is to provide the most accurate, real-time, and user-friendly train information platform.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
-            <div>
-              <img src="https://placehold.co/600x400.png" alt="Team working" className="rounded-xl shadow-lg" data-ai-hint="team collaboration" />
-            </div>
-            <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="bg-primary/10 p-3 rounded-full">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <Card className="bg-white/5 border-white/10">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-2xl">
+                  <Train className="h-6 w-6 text-primary" />
+                  About Railमित्र
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 leading-relaxed">
+                  Railमित्र is a student project I built with the aim of making railway travel in India easier and more convenient. It brings together useful features like live train tracking, PNR status checks, and seat availability—all in one simple platform.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-2xl">
                   <Rocket className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Our Story</h2>
-                  <p className="text-gray-400 mt-2">
-                    Founded in 2024, Railमित्र started as a small project fueled by the frustration of navigating a complex railway system. We envisioned a single platform that would bring clarity and ease to millions of travelers. Today, we are proud to serve thousands of users daily.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                 <div className="bg-primary/10 p-3 rounded-full">
-                   <Target className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Our Mission</h2>
-                  <p className="text-gray-400 mt-2">
-                    Our mission is to empower every railway passenger in India with reliable, instant, and accessible train information. We strive to build intuitive tools that make journey planning seamless and stress-free, from checking PNR status to tracking your train in real-time.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+                  How It Started
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 leading-relaxed">
+                  The idea for Railमित्र came in 2024 when I realized how confusing and time-consuming it can be to find reliable train information. As part of my learning journey, I decided to create a web app that could solve this problem. What started as a small project for practice turned into a complete platform that I’m proud to share.
+                </p>
+              </CardContent>
+            </Card>
 
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="text-4xl font-bold tracking-tighter">Meet the Team</h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              The driving force behind Railमित्र's success.
-            </p>
-          </div>
+            <Card className="bg-white/5 border-white/10">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-2xl">
+                  <Target className="h-6 w-6 text-primary" />
+                  My Mission
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 leading-relaxed">
+                  My mission with Railमित्र is to help passengers access accurate, real-time train information quickly and easily. More than just a project, it’s my attempt to show how technology can improve everyday experiences like travel.
+                </p>
+              </CardContent>
+            </Card>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member) => (
-              <div key={member.name} className="glowing-card-container rounded-xl">
-                <div className="glowing-card-content bg-white/5 p-6 text-center space-y-4">
-                  <Avatar className="h-24 w-24 mx-auto border-4 border-primary/50">
-                    <AvatarImage src={member.avatarUrl} alt={member.name} data-ai-hint={member.dataAiHint} />
-                    <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <h3 className="text-xl font-semibold">{member.name}</h3>
-                    <p className="text-primary">{member.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <Card className="bg-white/5 border-white/10">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-2xl">
+                  <Eye className="h-6 w-6 text-primary" />
+                  The Vision
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 leading-relaxed">
+                  Railमित्र reflects both my passion for technology and my interest in solving real-world problems. While it began as a personal project, I hope it can inspire others and maybe even grow into a tool that genuinely helps travelers across India.
+                </p>
+              </CardContent>
+            </Card>
           </div>
 
         </div>
