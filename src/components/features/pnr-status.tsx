@@ -126,41 +126,6 @@ export default function PnrStatus() {
           </CardFooter>
         </Card>
       )}
-
-      {!loading && !pnrData && !error && (
-        <Card className="bg-white/5 border-white/10 text-white">
-          <CardHeader>
-            <CardTitle>Booking Details for PNR: 2416423334</CardTitle>
-            <CardDescription className="flex items-center gap-2 pt-2 text-gray-400">
-              <TrainFront className="h-4 w-4" />
-              BBS TEJAS RAJ (22812) | Date of Journey: 17 Oct 2025
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-3 gap-4 mb-6 text-sm">
-              <div><span className="text-gray-400">From:</span><p className="font-semibold">NEW DELHI (NDLS)</p></div>
-              <div><span className="text-gray-400">To:</span><p className="font-semibold">Koderma Junction (KQR)</p></div>
-              <div><span className="text-gray-400">Class:</span><p className="font-semibold">AC 2 Tier (2A)</p></div>
-            </div>
-            <Separator className="bg-white/10" />
-            <div className="mt-6">
-              <h3 className="font-semibold flex items-center gap-2 mb-4 text-lg"><Users /> Passenger Status</h3>
-              <div className="space-y-3">
-                <div className="flex flex-wrap justify-between items-center bg-white/5 p-3 rounded-lg">
-                    <p className="font-medium">Sanskar Bhadani</p>
-                    <p className="font-bold text-green-400">CONFIRMED</p>
-                    <p className="text-gray-400">Coach: A2, Berth: 45</p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-          <CardFooter>
-             <div className="flex items-center gap-2 text-sm text-red-400">
-                <Clock /><span>Chart not prepared</span>
-             </div>
-          </CardFooter>
-        </Card>
-      )}
     </div>
   );
 }

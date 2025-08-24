@@ -102,43 +102,6 @@ export default function LiveTrainStatus() {
           </CardContent>
         </Card>
       )}
-
-       {!loading && !error && !trainData && (
-        <Card className="bg-white/5 border-white/10 text-white">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2"><TrainFront /> SHATABDI EXP (12001)</CardTitle>
-            <CardDescription>Showing demo data. Search for a train to see live results.</CardDescription>
-          </CardHeader>
-          <CardContent>
-             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Current Station</p><p className="font-semibold">BHOPAL JN</p></div>
-                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Next Station</p><p className="font-semibold">AGRA CANTT</p></div>
-                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Delay</p><p className="font-semibold text-red-400">39 Minutes</p></div>
-                <div className="bg-white/5 p-3 rounded-lg"><p className="text-gray-400">Status</p><p className="font-semibold">Running</p></div>
-            </div>
-
-            <div>
-              <Label className="text-gray-400 mt-6 block">Journey Progress</Label>
-              <div className="relative mt-4">
-                <div className="h-1 bg-white/10 rounded-full">
-                  <div className="h-1 bg-green-500 rounded-full" style={{ width: `75%` }}></div>
-                </div>
-                <div
-                  className="absolute -top-3"
-                  style={{ left: `calc(75% - 12px)` }}
-                >
-                  <TrainFront className="h-6 w-6 text-green-400" />
-                </div>
-              </div>
-              <div className="flex justify-between text-xs text-gray-400 mt-4">
-                <span>NEW DELHI</span>
-                <span>75% complete</span>
-                <span>MUMBAI CENTRAL</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 }
