@@ -39,11 +39,11 @@ const allFeatures = [
   { name: "Live Train Status", href: "/dashboard" },
   { name: "PNR Status Check", href: "/dashboard" },
   { name: "Live Station Arrivals", href: "/dashboard" },
-  { name: "Seat Availability Checker", href: "/dashboard" },
+  { name: "Seat Availability Checker", href: "#", specialAction: "apiError" },
   { name: "Fare Comparison between Trains", href: "/dashboard" },
-  { name: "Full Train Schedule", href: "/dashboard" },
+  { name: "Full Train Schedule", href: "#", specialAction: "apiError" },
   { name: "Cancelled / Diverted / Rescheduled Train Info", href: "#", specialAction: "apiError" },
-  { name: "Coach Layout and Position", href: "/coach-position" },
+  { name: "Coach Layout and Position", href: "#", specialAction: "apiError" },
 ];
 
 const stats = [
