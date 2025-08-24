@@ -133,7 +133,7 @@ export default function PnrStatus() {
             <CardTitle>Booking Details for PNR: 2416423334</CardTitle>
             <CardDescription className="flex items-center gap-2 pt-2 text-gray-400">
               <TrainFront className="h-4 w-4" />
-              MUMBAI RAJDHANI (12951) | Date of Journey: 25 Dec 2024
+              BBS TEJAS RAJ (22812) | Date of Journey: 17 Oct 2025
             </CardDescription>
           </CardHeader>
           <CardContent>
